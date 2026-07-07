@@ -156,7 +156,10 @@ async function loadRepos(){
 
         const repos = await response.json();
 
-        const pages = repos.filter(r => r.has_pages);
+        const pages = repos.filter(r =>
+            r.has_pages &&
+            r.name.toLowerCase() !== `${USER.toLowerCase()}.github.io`
+        );
 
         if(pages.length===0){
             container.innerHTML="<div class='loading'>Keine GitHub Pages gefunden.</div>";
